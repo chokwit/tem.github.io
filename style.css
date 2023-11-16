@@ -1,0 +1,27 @@
+
+  .title {
+    font-family:'Times New Roman';
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    text-align:center;
+    line-height: 24px;
+    color:rgb(44, 110, 88);
+  }
+  .Prac {
+    font-family: 'Lucida Sans';
+    color:blueviolet;
+  }
+  
+  .OrgChem-button {
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .AnaChem-button {
+    cursor: pointer;
+  }
+
+  .Prac {
+ text-align:center;
+  }
