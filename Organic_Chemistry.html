@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+     <div class="panel">
+       <h1>Organic Chemistry Practice Test (10 Items)</h1>
+       <div class="question" id="ques"></div>
+       <div class="options" id="opt"></div>
+       <button onclick="checkAns()" id="btn">SUBMIT</button>
+       <div id="score"></div>
+     </div>
+  </body>
+</html>
+
+<style>
+  body {
+    background-color: pink;
+  }
+  
+  .panel {
+    margin-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: navy;
+  }
+  
+  .question {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: black;
+  }
+  
+  .options {
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    color:black;
+  }
+  
+  button {
+    margin-right: 73px;
+    margin-top: 12%;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: rgb(49, 141, 141);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #score {
+    font-size: 30px;
+    color: darkslateblue;
+  }
+  
+  </style>
+
+
+<script>
+  // Questions that will be asked
+  const Questions = [
+   
+    {
+      q: "1. How many electrons occupy the bonding molecular orbitals of CN triple bonds?",
+      a: [
+        { text: "2", isCorrect: false},
+        { text: "4", isCorrect: false },
+        { text: "8", isCorrect: false },
+        { text: "6", isCorrect: true },
+      ],
+    },
+    {
+      q: "2. Which of the following is not amphoteric?",
+      a: [
+        { text: "NH2", isCorrect: false },
+        { text: "HF", isCorrect: false },
+        { text: "NH4+", isCorrect: true },
+        { text: "HCO3", isCorrect: false },
+      ],
+    },
+    {
+      q: "3. Which of the following is a chiral C5H12O 1º-alcohol?",
+      a: [
+        { text: "3-methyl-2-butanol", isCorrect: false },
+        { text: "2-methyl-2-butanol", isCorrect: false },
+        { text: "3-methyl-1-butanol", isCorrect: false },
+        { text: "2-methyl-1-butanol", isCorrect: true },
+      ],
+    },
+
+    {
+      q: "4. Which of the following reagents would you expect to react with bromocyclopentane by an SN2 mechanism?",
+      a: [
+        { text: "C2H5OH", isCorrect: false },
+        { text: "C2H5O(-) K(+)", isCorrect: false },
+        { text: "NaCN", isCorrect: true },
+        { text: "(CH3)3N", isCorrect: false },
+      ],
+    },
+
+    {
+      q: "5. Chloroethane, C2H5Cl, does not react with methanol under mild conditions. What reagent could be added to the reaction mixture to increase the rate of substitution.?",
+      a: [
+        { text: "HCl (conc.)", isCorrect: false },
+        { text: "NaOH", isCorrect: false },
+        { text: "NH4OH", isCorrect: false },
+        { text: "AgNO3", isCorrect: true },
+      ],
+    },
+
+    {
+      q: "6. Which of the following compounds is unlikely to react with sodium metal?",
+      a: [
+        { text: "C2H5OC2H5", isCorrect: true },
+        { text: "C2H5OH", isCorrect: false },
+        { text: "C2H5Br", isCorrect: false },
+        { text: "C2H5NH2", isCorrect: false },
+      ],
+    },
+    {
+      q: "7. The reaction of sodium ethoxide with iodoethane to form diethyl ether is classified as ...",
+      a: [
+        { text: "an electrophilic substitution", isCorrect: false },
+        { text: "a nucleophilic substitution", isCorrect: true},
+        { text: "a radical substitution", isCorrect: false },
+        { text: "an electrophilic addition", isCorrect: false },
+      ],
+    },
+    {
+      q: "8. Compound X reacts with HI. The product of this reaction, when treated with KOH in ethanol, gives Y ( an isomer of X ). Ozonolysis of Y (H2O2 workup) produces two compounds: a two carbon carboxylic acid, and a four carbon ketone. What is X?",
+      a: [
+        { text: "2-methyl-2-pentene", isCorrect: false },
+        { text: "4-methyl-1-pentene", isCorrect: false },
+        { text: "2,3-dimethyl-2-butene", isCorrect: false },
+        { text: "3-methyl-1-pentene", isCorrect: true },
+      ],
+    },
+    {
+      q: "9. The SN2 reaction of 1-chloro-3-methylbutane with sodium methoxide is relatively slow, but can be accelerated by the addition of a small amount of NaI. How is this catalysis best explained?",
+      a: [
+        { text: "The sodium cation helps pull off the chloride anion", isCorrect: false },
+        { text: "The iodide anion activates the methoxide nucleophile", isCorrect: false },
+        { text: "SN2 reaction of iodide ion converts the alkyl chloride to the more reactive alkyl iodide", isCorrect: true },
+        { text: "The NaI changes the mechanism to SN1", isCorrect: false },
+      ],
+    },
+    {
+      q: "10. Which one of the following alcohols will be oxidized by Jones' reagent (CrO3 in 50% sulphuric acid) to a ketone having the same number of carbon atoms ?",
+      a: [
+        { text: "1-methylcyclohexanol", isCorrect: false },
+        { text: "3,3-dimethylcyclopentanol", isCorrect: true },
+        { text: "3-methyl-1-hexanol", isCorrect: false },
+        { text: "3-ethyl-3-hexanol", isCorrect: false },
+      ],
+    },
+  ];
+
+  let currQuestion = 0;
+  let score = 0;
+
+  function loadQues() {
+    const question = document.getElementById("ques");
+    const opt = document.getElementById("opt");
+
+    question.textContent = Questions[currQuestion].q;
+    opt.innerHTML = "";
+
+    for (let i = 0; i < Questions[currQuestion].a.length; i++) {
+      const choicesdiv = document.createElement("div");
+      const choice = document.createElement("input");
+      const choiceLabel = document.createElement("label");
+
+      choice.type = "radio";
+      choice.name = "answer";
+      choice.value = i;
+
+      choiceLabel.textContent = Questions[currQuestion].a[i].text;
+
+      choicesdiv.appendChild(choice);
+      choicesdiv.appendChild(choiceLabel);
+      opt.appendChild(choicesdiv);
+    }
+  }
+
+  loadQues();
+
+  function loadScore() {
+    const totalScore = document.getElementById("score");
+    totalScore.textContent = `You scored ${score} out of ${Questions.length}`;
+  }
+
+  function nextQuestion() {
+    if (currQuestion < Questions.length - 1) {
+      currQuestion++;
+      loadQues();
+    } else {
+      document.getElementById("opt").remove();
+      document.getElementById("ques").remove();
+      document.getElementById("btn").remove();
+      loadScore();
+    }
+  }
+
+  function checkAns() {
+    const selectedAns = parseInt(
+      document.querySelector('input[name="answer"]:checked').value
+    );
+
+    if (Questions[currQuestion].a[selectedAns].isCorrect) {
+      score++;
+      console.log("Correct");
+      nextQuestion();
+    } else {
+      nextQuestion();
+    }
+  }
+</script>
