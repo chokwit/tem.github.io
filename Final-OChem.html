@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Chemistry Practice Test</title>
+  <style>
+    *{
+  margin: auto;
+  padding:0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body{
+  background: rgb(137, 199, 199);
+  margin-top: 9%;
+}
+
+.app{ background: white;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 30px;
+}
+.app h1{
+  font-size: 25px;
+  color:rgb(48, 48, 116);
+  font-weight: 600;
+  border-bottom: 1px solid #333;
+  padding-bottom: 30px;
+  font-family: Georgia;
+}
+
+.quiz{
+  padding: 25px 0;
+}
+
+.quiz h2{
+  font-size: 18px;
+  color: rgb(58, 58, 129);
+}
+
+.btn{
+  background: rgb(221, 205, 180);
+  color: #222;
+  font-weight: 500;
+  width: 100%;
+  border: 1px solid #222;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover:not([disabled]){
+  background: rgb(107, 88, 107);
+  color:#fff;
+}
+.btn:disabled{
+  cursor: no-drop;
+}
+
+button#next-btn{
+  background: #8ba8c5;
+  color: #0a0a0a;
+  font-weight: 500;
+  width: 150px;
+  border: 0;
+  padding: 10px;
+  margin: 20px auto 0;
+  border-radius:4px;
+  cursor: pointer;
+  display:none;
+}
+.correct{
+  background: green;
+}
+
+.incorrect{
+  background: red;
+}
+</style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>Organic Chemistry (10 Items)</h1>
+    <div class="quiz">
+      <h2 id="question">question here</h2>
+      <div id="answer-buttons">
+        <button class="btn">Answer1</button>
+        <button class="btn">Answer2</button>
+        <button class="btn">Answer3</button>
+        <button class="btn">Answer4</button>
+      </div>
+      <button id="next-btn">Next</button>
+      </div>
+    </div>
+  </div>
+<script>
+// this will set all the question and anwer
+const questions = [
+  {
+    question: "How many electrons occupy the bonding molecular orbitals of CN triple bonds?",
+    answers: [
+      { text: "2", correct: false},
+      { text: "4", correct: false},
+      { text: "8", correct: false},
+      { text: "6", correct: true},
+    ],
+  },
+  {
+    question: "Which of the following is not amphoteric?",
+    answers: [
+      { text: "NH2", correct: false},
+      { text: "HF", correct: false},
+      { text: "NH4+", correct: true},
+      { text: "HCO3", correct: false},
+    ],
+  },
+  {
+    question: "Which of the following is a chiral C5H12O 1º-alcohol?",
+    answers: [
+      { text: "3-methyl-2-butanol", isCorrect: false },
+      { text: "2-methyl-2-butanol", isCorrect: false },
+      { text: "3-methyl-1-butanol", isCorrect: false },
+      { text: "2-methyl-1-butanol", isCorrect: true },
+    ],
+  },
+  {
+    question: "Which of the following reagents would you expect to react with bromocyclopentane by an SN2 mechanism?",
+    answers: [
+      { text: "C2H5OH", isCorrect: false },
+      { text: "C2H5O(-) K(+)", isCorrect: false },
+      { text: "NaCN", isCorrect: true },
+      { text: "(CH3)3N", isCorrect: false },
+    ],
+  },
+
+  {
+    question: "Chloroethane, C2H5Cl, does not react with methanol under mild conditions. What reagent could be added to the reaction mixture to increase the rate of substitution.?",
+    answers: [
+      { text: "HCl (conc.)", isCorrect: false },
+      { text: "NaOH", isCorrect: false },
+      { text: "NH4OH", isCorrect: false },
+      { text: "AgNO3", isCorrect: true },
+    ],
+  },
+
+  {
+    question: "Which of the following compounds is unlikely to react with sodium metal?",
+    answers: [
+      { text: "C2H5OC2H5", isCorrect: true },
+      { text: "C2H5OH", isCorrect: false },
+      { text: "C2H5Br", isCorrect: false },
+      { text: "C2H5NH2", isCorrect: false },
+    ],
+  },
+  {
+    question: "The reaction of sodium ethoxide with iodoethane to form diethyl ether is classified as ...",
+    answers: [
+      { text: "an electrophilic substitution", isCorrect: false },
+      { text: "a nucleophilic substitution", isCorrect: true},
+      { text: "a radical substitution", isCorrect: false },
+      { text: "an electrophilic addition", isCorrect: false },
+    ],
+  },
+  {
+    question: "Compound X reacts with HI. The product of this reaction, when treated with KOH in ethanol, gives Y ( an isomer of X ). Ozonolysis of Y (H2O2 workup) produces two compounds: a two carbon carboxylic acid, and a four carbon ketone. What is X?",
+    answers: [
+      { text: "2-methyl-2-pentene", isCorrect: false },
+      { text: "4-methyl-1-pentene", isCorrect: false },
+      { text: "2,3-dimethyl-2-butene", isCorrect: false },
+      { text: "3-methyl-1-pentene", isCorrect: true },
+    ],
+  },
+  {
+    question: "The SN2 reaction of 1-chloro-3-methylbutane with sodium methoxide is relatively slow, but can be accelerated by the addition of a small amount of NaI. How is this catalysis best explained?",
+    answers: [
+      { text: "The sodium cation helps pull off the chloride anion", isCorrect: false },
+      { text: "The iodide anion activates the methoxide nucleophile", isCorrect: false },
+      { text: "SN2 reaction of iodide ion converts the alkyl chloride to the more reactive alkyl iodide", isCorrect: true },
+      { text: "The NaI changes the mechanism to SN1", isCorrect: false },
+    ],
+  },
+  {
+    question: "Which one of the following alcohols will be oxidized by Jones' reagent (CrO3 in 50% sulphuric acid) to a ketone having the same number of carbon atoms ?",
+    answers: [
+      { text: "1-methylcyclohexanol", isCorrect: false },
+      { text: "3,3-dimethylcyclopentanol", isCorrect: true },
+      { text: "3-methyl-1-hexanol", isCorrect: false },
+      { text: "3-ethyl-3-hexanol", isCorrect: false },
+    ],
+  },
+];
+
+const questionElement = document.getElementById("question"); 
+const answerButtons=document.getElementById("answer-buttons"); 
+const nextButton=document.getElementById("next-btn"); 
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startQuiz(){
+  currentQuestionIndex = 0;
+  score = 0;
+  nextButton.innerHTML = "Next"; 
+  console.log(currentQuestionIndex);
+  showQuestions();
+}
+
+function showQuestions(){
+  resetState();
+  var currentQuestion = questions[currentQuestionIndex]; 
+  let questionNo = currentQuestionIndex + 1;
+  questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+  currentQuestion.answers.forEach(answer=> {
+    const button = document.createElement("button"); 
+    button.innerHTML = answer.text; 
+    button.classList.add("btn"); 
+    answerButtons.appendChild(button);
+    if(answer.correct == true){
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener("click", selectAnswer);
+  });
+}
+
+function resetState(){
+  nextButton.style.display = "none";
+  while(answerButtons.firstChild){
+    answerButtons.removeChild(answerButtons.firstChild);
+  }
+}
+
+function selectAnswer(e){
+  var selectedBtn = e.target;
+  var isCorrect = selectedBtn.dataset.correct === "true";
+  if(isCorrect){
+    selectedBtn.classList.add("correct");
+    score++;
+  }else{
+    selectedBtn.classList.add("incorrect");
+  }
+
+  Array.from(answerButtons.children).forEach(button => {
+    if (button.dataset.correct === "true"){
+      button.classList.add("correct");
+    }
+    button.disabled = true;
+  });
+  nextButton.style.display = "block";
+}
+
+function showScore(){
+  resetState();
+  questionElement.innerHTML = "You scored " + score + " out of " + questions.length + "!";
+  nextButton.innerHTML = "Answer Again";
+  nextButton.style.display = "block";
+}
+
+function handleNextButton(){
+  currentQuestionIndex += 1;
+  console.log(currentQuestionIndex)
+  if (currentQuestionIndex < questions.length){
+    showQuestions();
+  }else{
+    showScore();
+  }
+}
+
+nextButton.addEventListener("click", ()=>{
+  if(currentQuestionIndex < questions.length){
+    handleNextButton();
+  } else{
+    startQuiz();
+  }
+});
+
+
+startQuiz();
+</script>
+</body>
+</html>
