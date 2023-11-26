@@ -6,6 +6,36 @@
   <title>Analytical Chemistry Practice Test</title>
 
   <style>
+.navbar {
+  width: 100%;
+  background-color: palevioletred;
+  overflow: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgba(167, 76, 90, 0.219);
+}
+.navbar a {
+  float: right;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  width: 15%; 
+}
+
+.navbar a:hover {
+  background-color: violet;
+  color: black;
+}
+
+.active {
+  background-color: blueviolet;
+}  
     *{
   margin: auto;
   padding:0;
@@ -87,6 +117,9 @@ button#next-btn{
 </head>
 
 <body>
+  <div class="navbar">
+    <a class="active" href="https://chokwit.github.io/tem.github.io/"><i class="home"></i> Home</a>
+  </div> 
   <div class="app">
     <h1>Analytical Chemistry (10 Items)</h1>
     <div class="quiz">
