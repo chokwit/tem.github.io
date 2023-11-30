@@ -104,6 +104,7 @@
   </div>
 
   <script>
+    //this will set the questions and answers
     const questions = [
     {
       question: "As you move from left to right across the periodic table ____.",
@@ -208,13 +209,13 @@
   const answerButtons=document.getElementById("answer-buttons"); 
   const nextButton=document.getElementById("next-btn"); 
 
-  let currentQuestionIndex = 0;
+  let currentQuestionIndex = 0; 
   let score = 0;
 
   function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
-    nextButton.innerHTML = "Next"; 
+    nextButton.innerHTML = "Next"; //this will change the nextButton innerHTML content.
     console.log(currentQuestionIndex);
     showQuestions();
   }
